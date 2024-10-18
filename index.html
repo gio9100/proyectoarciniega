@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Fútbol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+   /* Estilos Generales */
+   body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f0f0; /* Fondo suave */
+      color: #047e00; /* Color de texto predeterminado */
+    }
+  
+    header {
+      background-image: url('https://example.com/football-background.jpg'); /* Imagen de fondo del fútbol */
+      background-size: cover;
+      background-position: center;
+      color: rgb(20, 128, 5);
+      padding: 80px 0; /* Ajustar espacio superior */
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para el encabezado */
+    }
+
+
+}
+
+
+    header h1 {
+      font-family: 'Russo One', sans-serif;
+      font-size: 50px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+      color: #ffcc00; /* Amarillo brillante */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Efecto de sombra */
+    }
+
+    header p {
+      font-size: 20px;
+      color: #ffffff; /* Texto blanco para más contraste */
+    }
+
+
+    /* Menú desplegable */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      margin: 20px auto; /* Centrado */
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(40, 167, 69, 0.9);
+      min-width: 200px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: rgba(28, 139, 54, 0.8);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Estilo para el apartado de inicio de sesión y registro */
+    .auth-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .auth-container a {
+      background-color: #007bff; /* Azul */
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-family: 'Russo One', sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    .auth-container a:hover {
+      background-color: #0056b3; /* Azul oscuro */
+    }
+
+    .music-button:hover {
+      background-color: #218838;
+    }
+
+    /* Sección de campeones */
+    .champions-section {
+      padding: 50px;
+      text-align: center;
+      background-color: #ffffff; /* Fondo blanco */
+      border-radius: 10px;
+      margin: 20px auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .champions-section h2 {
+      font-family: 'Russo One', sans-serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .league {
+      display: inline-block;
+      width: 45%;
+      margin: 20px;
+      background-color: #f9f9f9; /* Fondo claro */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .league img {
+      max-width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .league:hover {
+      transform: translateY(-10px);
+    }
+
+    .league h3 {
+      font-family: 'Russo One', sans-serif;
+      color: #444;
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .league p {
+      font-size: 20px;
+      color: #555;
+    }
+
+    /* Pie de página */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #28a745; /* Verde */
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+/* Menú desplegable "Otros Deportes" */
+.dropdown-button {
+  background-color: #287fa7; /* Verde vibrante */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px; /* Aumentar el radio para bordes más suaves */
+  cursor: pointer;
+  font-family: 'Russo One', sans-serif;
+  font-size: 18px; /* Aumentar el tamaño de la fuente */
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregar sombra */
+}
+
+.dropdown-button:hover {
+  background-color: #213988; /* Verde más oscuro */
+  transform: translateY(-4px); /* Más desplazamiento al hacer hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(40, 70, 167, 0.9);
+  min-width: 200px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Añadir transición de transformación */
+  transform: translateY(10px); /* Iniciar desplazado hacia abajo */
+  pointer-events: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0); /* Desplazamiento al aparecer */
+  pointer-events: auto;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  transition: background-color 0.3s, transform 0.2s; /* Añadir transición de transformación */
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(45, 28, 139, 0.8);
+  transform: translateX(5px); /* Desplazamiento lateral al hacer hover */
+}
+
+
+    /* Estilos para el modal */
+    .modal {
+      display: none; /* Oculto por defecto */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 5px;
+      wiolor: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Enlace al panel de administrador */
+    #adminLink {
+      display: none; /* Oculto por defecto */
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: red;
+      text-decoration: underline;
+    }dth: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: red; /* Color de título del modal */
+    }
+
+    .close {
+      c
+  </style>
+</head>
+<body>
+
+  <!-- Apartado de Iniciar Sesión y Registrarse -->
+  <div class="auth-container">
+    <a href="login.html">Iniciar Sesión</a>
+    <a href="register.html">Registrarse</a>
+    <a href="javascript:void(0);" class="profile-button" onclick="showProfile()">Perfil</a>
+  </div>
+
+  <!-- Encabezado Central -->
+  <header onclick="showAdminLogin()" style="cursor: pointer;">
+    <div class="container"></div>
+    <h1>Queimando Futebol</h1>
+  </header>
+  <a href="admin_panel.html" id="adminLink" style="display: none;">Panel de Administrador</a> <!-- Aquí cambia la ruta según sea necesario -->
+
+  <!-- Menú desplegable -->
+<div class="dropdown">
+  <button class="dropdown-button">Más Información</button>
+  <div class="dropdown-content">
+    <a href="noticias.html" target="_blank">Últimas Noticias</a>
+    <a href="jugadores(1).html" target="_blank">Jugadores Destacados</a>
+    <a href="equipos.html" target="_blank">Equipos</a>
+    <a href="historia.html" target="_blank">Historia del Fútbol</a>
+  </div>
+</div>
+
+<!-- Menú desplegable -->
+<div class="dropdown">
+  <button class="dropdown-button">Campeonatos</button>
+  <div class="dropdown-content">
+    <a href="campeones_de_mx.html" target="_blank">Campeones del Fútbol Mexicano</a>
+    <a href="GanadoresDeBalonesDeOro.html" target="_blank">Ganadores de Balones de Oro</a>
+    <a href="CopasMundiales.html" target="_blank">Copas Mundiales</a>
+    <a href="bota de oro.html" target="_blank">Campeones de botas de oro</a>
+    <a href="Campeones De La Premier league.html" target="_blank">Campeones De La Premier League</a>
+    <a href="Campeones De La Liga Española.html" target="_blank">Campeones De La Liga Española </a>
+    </div>
+</div>
+
+<!-- Menú desplegable -->
+<div class="dropdown">
+  <button class="dropdown-button">Datos Interesantes Del Futbol</button>
+  <div class="dropdown-content">
+    <a href="goles modernos.html" target="_blank">Los Mejores Goles modernos</a>
+    <a href="jugadores(1).html" target="_blank">Jugadores Destacados</a>
+    <a href="equipos.html" target="_blank">Equipos</a>
+    <a href="historia.html" target="_blank">Historia del Fútbol</a>
+  </div>
+</div>
+
+<style>
+  /* Botón desplegable */
+  .dropdown-button {
+    background-color: #418bfa; /* Azul */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Russo One', sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+
+  .dropdown-button:hover {
+    background-color: #0056b3; /* Azul oscuro */
+    transform: translateY(-2px);
+  }
+
+  /* Contenido del menú desplegable */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(40, 167, 69, 0.9);
+    min-width: 200px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Deshabilitar interacciones cuando está oculto */
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    pointer-events: auto; /* Habilitar interacciones al mostrar */
+  }
+
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-content a:hover {
+    background-color: rgba(28, 139, 54, 0.8);
+  }
+</style>
+
+  <style>
+    .music-button {
+        background-color: rgba(40, 167, 69, 0.8); /* Fondo semi-transparente */
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+        font-family: 'Russo One', sans-serif;
+        transition: background-color 0.3s;
+    }
+
+    .music-button:hover {
+        background-color: rgba(28, 139, 54, 0.8);
+    }
+  </style>
+
+  <script>
+    function playMusic() {
+        var audioPlayer = document.getElementById("audioPlayer");
+        audioPlayer.play().catch(function(error) {
+            console.log("Error al reproducir la música:", error);
+        });
+    }
+
+    function pauseMusic() {
+        var audioPlayer = document.getElementById("audioPlayer");
+        audioPlayer.pause();
+    }
+
+    function showProfile() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData) {
+            alert(Perfil del Usuario:\nNombre: ${userData.username}\nCorreo: ${userData.email});
+        } else {
+            alert("No has iniciado sesión.");
+        }
+    }
+  </script>
+
+  <!-- Menú desplegable "Otros Deportes" -->
+<div class="dropdown">
+  <button class="dropdown-button">Otros Deportes</button>
+  <div class="dropdown-content">
+    <a href="index.html">Fútbol</a>
+    <a href="baloncesto.html">Baloncesto</a>
+    <a href="tenis.html">Tenis</a>
+    <a href="natacion.html">Natación</a>
+    <a href="ciclismo.html">Ciclismo</a>
+  </div>
+</div>
+
+
+  <!-- Sección de Campeones -->
+  <section class="champions-section">
+    <h2 id="championsTitle">Continente Americano</h2>
+    <div class="league" id="leagueMX" onclick="window.location.href='america.html'">
+      <img src="images equipos/am.jpg" alt="Liga MX">
+      <h3>Liga BBVA MX</h3>
+      <p>Club América</p>
+    </div>
+    
+    <div class="league" id="leagueMLS" onclick="window.location.href='columbus-crew.html'">
+      <img src="images equipos/colu.jpg" alt="MLS">
+      <h3>Liga MLS</h3>
+      <p>Columbus Crew</p>
+    </div>
+  </section>
+
+  <!-- Sección de Campeones -->
+  <section class="champions-section">
+    <h2 id="europeanTitle">Continente Europeo</h2>
+    <div class="league" id="leagueUCL" onclick="window.location.href='real-madrid.html'">
+      <img src="images equipos/rd.png" alt="UEFA Champions League">
+      <h3>UEFA Champions League</h3>
+      <p>Real Madrid</p>
+    </div>
+
+    <div class="league" id="leagueLaLiga" onclick="window.location.href='barcelona.html'"> 
+      <img src="images equipos/barca.png" alt="La liga">
+      <h3>La Liga</h3>
+      <p>Barcelona FC</p>
+    </div>
+    
+    <div class="league" id="leagueSerieA" onclick="window.location.href='napoli.html'">
+      <img src="images equipos/napoli.jpg" alt="Serie A">
+      <h3>Serie A</h3>
+      <p>SSC Napoli</p>
+    </div>
+
+    <div class="league" id="leagueBundesliga" onclick="window.location.href='bayern.html'">
+      <img src="images equipos/bayern.jpg" alt="Bundesliga">
+      <h3>Bundesliga</h3>
+      <p>Bayern Múnich</p>
+    </div>
+    
+    <div class="league" id="leagueLigue1" onclick="window.location.href='psg.html'">
+      <img src="images equipos/descarga.jpg" alt="Ligue 1">
+      <h3>Ligue 1</h3>
+      <p>Paris Saint-Germain</p>
+    </div>
+  </section>
+
+  <!-- Sección de Campeones -->
+  <section class="champions-section">
+    <h2 id="asianTitle">Continente Asiático</h2>
+    <div class="league" id="leagueSaudi" onclick="window.location.href='al-hilal.html'">
+      <img src="images equipos/al hilal.jpg" alt="Liga Saudí">
+      <h3>Liga Saudí</h3>
+      <p>Al Hilal</p>
+    </div>
+  </section>
+
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalContent"></p>
+    </div>
+  </div>
+
+  <script>
+    // Mostrar enlace al panel de administrador al hacer clic en "Queimando Futebol"
+    function showAdminLogin() {
+        var username = prompt("Ingrese su nombre de usuario:");
+        var password = prompt("Ingrese su contraseña:");
+
+        if (username === "GIO" && password === "2008") {
+            var adminLink = document.getElementById("adminLink");
+            adminLink.style.display = "block"; // Muestra el enlace
+        } else {
+            alert("Usuario o contraseña incorrectos.");
+        }
+    }
+
+    // Obtener el modal
+    var modal = document.getElementById("myModal");
+    var modalTitle = document.getElementById("modalTitle");
+    var modalContent = document.getElementById("modalContent");
+
+    // Mostrar el modal con información
+    function showModal(title, content) {
+        modalTitle.textContent = title;
+        modalContent.textContent = content;
+
+        // Cambiar el color de texto a rojo
+        modalTitle.style.color = 'red';
+        modalContent.style.color = 'red';
+
+        modal.style.display = "block";
+    }
+
+    // Obtener el botón de cerrar
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    // Cuando el usuario hace clic en el botón de cerrar, cerrar el modal
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+        modalTitle.style.color = ''; // Restablecer el color del título
+        modalContent.style.color = ''; // Restablecer el color del contenido
+    }
+
+    // Cuando el usuario hace clic fuera del modal, también se cierra
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            modalTitle.style.color = ''; // Restablecer el color del título
+            modalContent.style.color = ''; // Restablecer el color del contenido
+        }
+    }
+
+    // Cargar datos desde localStorage
+    function loadChampions() {
+        const championsData = JSON.parse(localStorage.getItem('championsData')) || {};
+        
+        // Actualizar los títulos y la información de las ligas
+        if (championsData.titleAmericano) {
+            document.getElementById("championsTitle").textContent = championsData.titleAmericano;
+        }
+        if (championsData.titleEuropeo) {
+            document.getElementById("europeanTitle").textContent = championsData.titleEuropeo;
+        }
+        if (championsData.titleAsiatico) {
+            document.getElementById("asianTitle").textContent = championsData.titleAsiatico;
+        }
+
+        // Actualizar la información de las ligas
+        const leagues = [
+            { id: 'leagueMX', data: championsData.ligaMX },
+            { id: 'leagueMLS', data: championsData.ligaMLS },
+            { id: 'leagueUCL', data: championsData.ligaUCL },
+            { id: 'leagueLaLiga', data: championsData.ligaLaLiga },
+            { id: 'leagueSerieA', data: championsData.ligaSerieA },
+            { id: 'leagueBundesliga', data: championsData.ligaBundesliga },
+            { id: 'leagueLigue1', data: championsData.ligaLigue1 },
+            { id: 'leagueSaudi', data: championsData.ligaSaudi },
+        ];
+
+        leagues.forEach(league => {
+            if (league.data) {
+                document.getElementById(league.id).onclick = function() {
+                    showModal(league.data.title, league.data.content);
+                };
+            }
+        });
+    }
+
+    // Llamar a la función al cargar la página
+    window.onload = loadChampions;
+  </script>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Margen</title>
+    <style>
+        body {
+            margin: 20px 60px; /* margen: arriba/abajo 20px, izquierda/derecha 60px */
+        }
+    </style>
+</head>
+<body>
+    <h1>jogue limpo, sinta sua liga</h1>
+    <p>Esta es la mejor pagina de futbol</p>
+</body>
+</html>
